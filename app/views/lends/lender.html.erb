@@ -1,0 +1,51 @@
+<a href="/logout">Logout</a>
+<p>Name: <%=@lender.fname%> <%=@lender.lname%></p>
+<p>Account Balance: $<%=@lender.money%></p><br/>
+<p>List of people in need of help:</p>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Need Money For</th>
+		<th>Reason For Loan</th>
+		<th>Amount Needed</th>
+		<th>Amount Raised</th>
+		<th>Action</th>
+	</tr>
+	<% @borrowers.each do |b| %>
+		<tr>
+			<td><%=b.fname%> <%=b.lname%></td>
+			<td><%=b.money_for%></td>
+			<td><%=b.reason%></td>
+			<td>$<%=b.needed%></td>
+			<td>$<%=b.raised%></td>
+			<td><form method="post" action="/lends/<%=b.id%>">
+				<%= token_tag nil %>
+				$<input name="amount" type="number">
+				<input type="submit" value="Lend">
+			</form>
+			</td>
+		</tr>
+	<% end %>
+</table>	
+
+<p>List of people you lend money to:</p>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Need Money For</th>
+		<th>Reason for Loan</th>
+		<th>Amount Needed</th>
+		<th>Amount Raised</th>
+		<th>Amount Lent</th>
+	</tr>
+	<% @loaned.each do |l| %>
+		<tr>
+			<td><%=l.fname%> <%=l.lname%></td>
+			<td><%=l.money_for%></td>
+			<td><%=l.reason%></td>
+			<td>$<%=l.needed%></td>
+			<td>$<%=l.raised%></td>
+			<td>$<%=l.amount%></td>
+		</tr>
+	<% end %>
+</table>		

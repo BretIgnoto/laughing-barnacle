@@ -1,0 +1,10 @@
+<a href="/">Click herer to register</a>
+<h2>Login</h2>
+<form action="/login" method="post">
+		<%= token_tag nil %>
+		<label>Email:</label>
+		<input type="text" name="email"><br/>
+		<label>Password:</label>
+		<input type="password" name="password">
+	<input type="submit" value="Login">
+</form>
